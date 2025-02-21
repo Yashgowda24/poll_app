@@ -200,8 +200,8 @@ class _OTPViewState extends State<OTPView> {
                     ignoring: !isOtpFilled(),
                     child: InkWell(
                       onTap: () {
-                        print(
-                            "Get.arguments: ${Get.arguments}"); // Debugging output
+                        // Debugging output
+                        print("Get.arguments: ${Get.arguments}");
                         print("Phone: ${Get.arguments['phone']}");
                         print("ID: ${Get.arguments['id']}");
                         otpViewModel.activateUserApi(

@@ -63,6 +63,11 @@ class SignupViewModel extends GetxController {
       'password': passwordController.value.text,
       'confirmPassword': confirm_passwordController.value.text,
     }).then((value) {
+      print("Debugging in signupp view model starts:");
+      print("Full API Response: $value");
+      print("User Data: ${value["user"]}");
+      print("User ID (_id): ${value["user"]["_id"]}");
+      print("Message: ${value["message"]}");
       print("hello--$value");
       print("${value["user"]}");
       print(value["message"]);
@@ -77,7 +82,7 @@ class SignupViewModel extends GetxController {
           confirm_passwordController.value.text) {
         Get.toNamed(RouteName.otpScreen, arguments: {
           'phone': mobileController.value.text.toString(),
-          // 'id': value['user']['_id'],
+          'id': value['user']['_id'],
         });
       } else {
         toast();

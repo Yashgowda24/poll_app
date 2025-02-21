@@ -33,7 +33,7 @@ class LoginRepository {
   }
 
   Future<dynamic> activateUserApi(var data, String id) async {
-    dynamic response = _apiService.postApi(data, AppUrl.verifyotpId(id: id));
+    dynamic response = _apiService.postApi(data, AppUrl.verifyotpId());
     return response;
   }
 

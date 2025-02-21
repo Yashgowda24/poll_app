@@ -41,8 +41,8 @@ class AppUrl {
     return "$baseUrl/api/v1/deletePollById/$pollId";
   }
 
-  static String verifyotpId({required String id}) {
-    return "$baseUrl/api/v1/user/verifyOtp/$id";
+  static String verifyotpId() {
+    return "$baseUrl/api/v1/user/verifyOtp/";
   }
 
   static String createProfileId({required String id}) {
