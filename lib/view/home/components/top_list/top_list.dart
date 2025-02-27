@@ -566,7 +566,9 @@ class _TopListState extends State<TopList> {
 
   @override
   Widget build(BuildContext context) {
-    final itemWidth = MediaQuery.of(context).size.width * 0.3;
+    // final itemWidth = MediaQuery.of(context).size.width * 0.3;
+    final itemWidth = MediaQuery.of(context).size.width * 0.26;
+
     return Row(
       children: [
         SizedBox(

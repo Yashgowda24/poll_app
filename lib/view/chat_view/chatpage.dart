@@ -121,9 +121,12 @@ class _ChatPageState extends State<ChatPage> {
       } else {
         print(response.reasonPhrase);
         var responseBody = json.decode(response.body);
-        Utils.snackBar("Error", responseBody['message']);
+        print("The response1 is as below");
+        print(responseBody['message']);
+        Utils.snackBar("Success", responseBody['message']);
       }
     } catch (e) {
+      print("The response2 is as below");
       print('Error: $e');
     }
   }
@@ -871,7 +874,9 @@ class _ChatPageState extends State<ChatPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              message['sent'] ? user['_id'] : 'Other User',
+              // message['sent'] ? user['_id'] : 'Other User',
+              message['sent'] ? user['name'] : 'Other User',
+
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -933,6 +938,16 @@ class _ChatPageState extends State<ChatPage> {
       await launch(url);
     } else {
       print('Could not launch $url');
+    }
+  }
+
+  void _handleAudioCall() async {
+    const url =
+        'https://pollchat.videocall.myappsdevelopment.co.in/c016c724-54c7-4560-b455-8875e148b7a5';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('For voice call could not launch $url');
     }
   }
 
@@ -1012,7 +1027,7 @@ class _ChatPageState extends State<ChatPage> {
                       color: AppColor.whiteColor,
                     ),
                     onPressed: () {
-                      //_handleAudioCall();
+                      _handleAudioCall();
                     },
                   ),
                   IconButton(

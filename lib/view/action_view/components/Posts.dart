@@ -62,6 +62,7 @@ class _PostsState extends State<Posts> {
           List<dynamic> friendActions = responseData['actions'];
           if (friendActions.isNotEmpty) {
             actionUrls = friendActions;
+            print("Fetched URLs from the poll are: $actionUrls");
           } else {
             print('No friend actions found');
           }

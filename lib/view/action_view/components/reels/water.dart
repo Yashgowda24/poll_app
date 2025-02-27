@@ -110,6 +110,26 @@ class _VideoDownloadAndPlayScreenState
       downloading = false;
     });
   }
+  
+  // watermark using from path
+  // Future<void> _addWatermarkAndTextToVideo(
+  //     String videoPath, String outputPath, String finalPath) async {
+  //   final command =
+  //       '-i $videoPath -i $_watermarkPath -filter_complex "overlay=10:10,drawtext=text=\'PollApp\':x=10:y=10:fontsize=24:fontcolor=white" -codec:a copy $outputPath';
+
+  //   await FFmpegKit.execute(command).then((session) async {
+  //     final returnCode = await session.getReturnCode();
+  //     if (returnCode != null && ReturnCode.isSuccess(returnCode)) {
+  //       setState(() {
+  //         progress = "Watermark and text added successfully!";
+  //       });
+  //     } else {
+  //       setState(() {
+  //         progress = "Failed to add watermark and text to video.";
+  //       });
+  //     }
+  //   });
+  // }
 
   Future<void> _addWatermarkAndTextToVideo(
       String videoPath, String watermarkedPath, String finalPath) async {
