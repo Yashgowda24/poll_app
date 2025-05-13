@@ -416,8 +416,8 @@ class _TopListState extends State<TopList> {
       String? authToken = await userPreference.getAuthToken();
       String? userid = await userPreference.getUserID();
       var headers = {'Authorization': 'Bearer $authToken'};
-      var url =
-          'https://pollchat.myappsdevelopment.co.in/api/v1/moment/$userid';
+      var url = 'https://poll-chat.onrender.com/api/v1/moment/$userid';
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/moment/$userid';
       var response = await http.get(Uri.parse(url), headers: headers);
 
       if (response.statusCode == 200) {
@@ -471,8 +471,8 @@ class _TopListState extends State<TopList> {
 
     try {
       var response = await http.get(
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/moment/friends'),
+        Uri.parse('https://poll-chat.onrender.com/api/v1/moment/friends'),
+        // 'https://pollchat.myappsdevelopment.co.in/api/v1/moment/friends'),
         headers: headers,
       );
 

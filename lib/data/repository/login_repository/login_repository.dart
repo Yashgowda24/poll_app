@@ -11,7 +11,7 @@ class LoginRepository {
   }
 
   Future<dynamic> postloginApi(var data) async {
-    dynamic response = _apiService.postLoginApi(
+    dynamic response = await _apiService.postLoginApi(
         AppUrl.loginUrl, data['phone'], data["password"]);
     return response;
   }

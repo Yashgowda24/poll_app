@@ -1143,16 +1143,27 @@ class _PollCardState extends State<PollCard> {
                                               flex: 5,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  optionText,
-                                                  maxLines: 5,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      optionText,
+                                                      maxLines: 5,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    if (isSelected) ...[
+                                                      const SizedBox(width: 5),
+                                                      const Icon(
+                                                          Icons.check_circle,
+                                                          color: Colors.green),
+                                                    ],
+                                                  ],
                                                 ),
                                               ),
                                             ),

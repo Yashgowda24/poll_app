@@ -42,16 +42,16 @@ class _HeaderState extends State<Header> {
           ),
           Row(
             children: [
-              InkWell(
-                onTap: () {
-                  Get.toNamed(RouteName.pollChatNotificationsScreen);
-                },
-                child: SvgPicture.asset(
-                  IconAssets.notificationIcon,
-                  width: 34,
-                  height: 34,
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(RouteName.pollChatNotificationsScreen);
+              //   },
+              //   child: SvgPicture.asset(
+              //     IconAssets.notificationIcon,
+              //     width: 34,
+              //     height: 34,
+              //   ),
+              // ),
               const SizedBox(
                 width: 10,
               ),

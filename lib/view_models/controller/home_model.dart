@@ -36,10 +36,10 @@ class HomeViewModelController extends GetxController {
       'Authorization': 'Bearer $authToken',
     };
     loading.value = true;
-    final response = await http.get(
-        Uri.parse(
-            "https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId"),
-        headers: headers);
+    final response =
+        await http.get(Uri.parse("https://poll-chat.onrender.com$pollId"),
+            // "https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId"),
+            headers: headers);
     if (response.statusCode == 200) {
       singlePollCard.clear();
       final jsonData = jsonDecode(response.body);
@@ -61,7 +61,8 @@ class HomeViewModelController extends GetxController {
     var request = http.Request(
         'PUT',
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/$pollId'));
+          "https://poll-chat.onrender.com/api/v1/poll/pin/$pollId"));
+            // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/$pollId'));
     request.headers.addAll(headers);
     try {
       http.StreamedResponse response = await request.send();
@@ -89,7 +90,8 @@ class HomeViewModelController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
+          'https://poll-chat.onrender.com/api/v1/friend/sent/'));
+              // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
 
@@ -127,7 +129,8 @@ class HomeViewModelController extends GetxController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
+          'https://poll-chat.onrender.com/api/v1/friend/remove/$id'));
+            // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 

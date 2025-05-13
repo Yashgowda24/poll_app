@@ -42,6 +42,8 @@ class _PollChatNotificationsView extends State<PollChatNotificationsView> {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       var notificationList = jsonResponse['notifications'] as List;
+      print('----notifi is as below-----');
+      print(jsonResponse['notifications']);
 
       setState(() {
         notifications = notificationList.map((notification) {

@@ -74,8 +74,8 @@ class _HomeViewState extends State<HomeView> {
       print("Auth token is null");
       return;
     }
-    const apiUrl =
-        'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/get';
+    const apiUrl = 'https://poll-chat.onrender.com/api/v1/poll/pin/get';
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/get';
     final headers = {
       'Authorization': 'Bearer $authToken',
     };
@@ -110,7 +110,8 @@ class _HomeViewState extends State<HomeView> {
     String? authToken = await userPreference.getAuthToken();
 
     const apiUrl =
-        'http://pollchat.myappsdevelopment.co.in/api/v1/poll/trendingpolls';
+    'https://poll-chat.onrender.com/api/v1/poll/trendingpolls';
+        // 'http://pollchat.myappsdevelopment.co.in/api/v1/poll/trendingpolls';
     final headers = {
       'Authorization': 'Bearer $authToken',
     };

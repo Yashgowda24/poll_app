@@ -28,6 +28,7 @@ class LoginViewModel extends GetxController {
       print(value["message"]);
 
       if (!value['success']) {
+        print('The values is $value');
         Utils.snackBar("error", value['message']);
         return;
       }
@@ -46,7 +47,7 @@ class LoginViewModel extends GetxController {
       Utils.snackBar("Error", error.toString());
       print(error);
       print(stackTrace);
-      // loading.value = false;
+      loading.value = false;
     });
   }
 }

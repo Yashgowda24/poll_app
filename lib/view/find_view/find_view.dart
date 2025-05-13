@@ -5,11 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
-import 'package:poll_chat/models/poll_model/poll_model.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
-import 'package:poll_chat/simmer/simmerlist.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import 'package:http/http.dart' as http;
 import '../../view_models/controller/home_model.dart';
@@ -38,6 +36,15 @@ class _FindViewState extends State<FindView>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
+    // Fetch the logged-in user ID when screen loads
+    getUserIdtoVerfiy();
+  }
+
+  // get userId, if userId == loggedIn userId, then dont display while searching friends
+  void getUserIdtoVerfiy() async {
+    id = await userPreference.getUserID();
+    setState(() {});
   }
 
   @override
@@ -51,7 +58,9 @@ class _FindViewState extends State<FindView>
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id');
+      'https://poll-chat.onrender.com/api/v1/friend/add/$id',
+    );
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id',);
     try {
       var response = await http.post(url, headers: headers);
       if (response.statusCode == 200) {
@@ -75,8 +84,8 @@ class _FindViewState extends State<FindView>
 
   Future<void> performSearch(String query) async {
     var token = await userPreference.getAuthToken();
-    final apiUrl =
-        'https://pollchat.myappsdevelopment.co.in/api/v1/search/user/$query';
+    final apiUrl = 'https://poll-chat.onrender.com/api/v1/search/user/$query';
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/user/$query';
     final headers = {
       'Authorization': 'Bearer $token',
     };
@@ -103,8 +112,8 @@ class _FindViewState extends State<FindView>
   Future<void> performPollSearch(String query) async {
     log("performPollSearch API call");
     var token = await userPreference.getAuthToken();
-    final apiUrl =
-        'https://pollchat.myappsdevelopment.co.in/api/v1/search/poll/$query';
+    final apiUrl = 'https://poll-chat.onrender.com/api/v1/search/poll/$query';
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/poll/$query';
     // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/poll/question/$query';
     final headers = {
       'Authorization': 'Bearer $token',
@@ -134,7 +143,7 @@ class _FindViewState extends State<FindView>
 
   @override
   Widget build(BuildContext context) {
-    return  WillPopScope(
+    return WillPopScope(
       onWillPop: () async {
         SystemNavigator.pop();
         return false;
@@ -209,8 +218,8 @@ class _FindViewState extends State<FindView>
                   indicatorColor: AppColor.purpleColor,
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: AppColor.purpleColor,
-                  labelStyle:
-                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  labelStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
                   unselectedLabelColor: AppColor.greyColor,
                   unselectedLabelStyle: const TextStyle(
                       fontWeight: FontWeight.normal, fontSize: 16),
@@ -325,18 +334,21 @@ class _FindViewState extends State<FindView>
                           flex: 2,
                           child: Align(
                             alignment: Alignment.topCenter,
-                            child: InkWell(
-                              onTap: () async {
-                                sendFriendRequest(
-                                    _searchResults[index]['_id'] ?? "");
-                                Get.toNamed(RouteName.usersearchprofileview,
-                                    arguments: _searchResults[index]);
-                              },
-                              child: const Icon(
-                                Icons.add,
-                                color: AppColor.purpleColor,
-                              ),
-                            ),
+                            child: _searchResults[index]['_id'] == id
+                                ? SizedBox()
+                                : InkWell(
+                                    onTap: () async {
+                                      sendFriendRequest(
+                                          _searchResults[index]['_id'] ?? "");
+                                      Get.toNamed(
+                                          RouteName.usersearchprofileview,
+                                          arguments: _searchResults[index]);
+                                    },
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: AppColor.purpleColor,
+                                    ),
+                                  ),
                           ),
                         ),
                       ],

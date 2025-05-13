@@ -19,6 +19,8 @@ class PollModel extends GetxController {
   final RxList<dynamic> allacff = <dynamic>[].obs;
   UserPreference userPreference = UserPreference();
   List<Map<String, dynamic>> singledataList = [];
+  RxString selectedOption = "".obs; // Stores the selected option
+
   Future<void> shareContent() async {
     await FlutterShare.share(
         title: 'Check out this poll',
@@ -38,6 +40,12 @@ class PollModel extends GetxController {
       print("Option: $option");
       final response = await _api.postSendVote({"$option": true}, pollId);
       print("Vote value-- ${response}");
+
+      // ✅ Store selected option in the model
+      // selectedOption.value = option;
+
+      // update UI
+      // update();
     } catch (e) {
       Utils.snackBar("Error", e.toString());
     }
@@ -46,7 +54,7 @@ class PollModel extends GetxController {
   void resetVote(String pollId) async {
     try {
       final response = await _api.resetVote(pollId);
-      print("RESET VOTE-- ${response}");
+      print("RESET VOTE-- $response");
       var newValue = response["newValue"];
       print("Type of newValue: ${newValue.runtimeType}");
       if (newValue != null) {

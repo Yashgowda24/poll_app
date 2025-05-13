@@ -77,7 +77,7 @@ class _DashboardView extends State<DashboardView> {
   ) {
     final bool isActive = _selectedIndex == index;
     final screenWidth = MediaQuery.of(context).size.width;
-    final iconSize = isActive ? screenWidth * 0.08 : screenWidth * 0.06;
+    final iconSize = isActive ? screenWidth * 0.07 : screenWidth * 0.06;
     final paddingSize = screenWidth * 0.03;
 
     return BottomNavigationBarItem(

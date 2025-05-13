@@ -779,14 +779,15 @@ class NetworkApiServices extends BaseApiServices {
         return jsonDecode(response.body);
       }
       responseJson = jsonDecode(response.body);
+      return responseJson;
     } on SocketException {
-      throw InternetException('');
+      throw InternetException('No Internet Connection!');
     } on RequestTimeout {
-      throw RequestTimeout('');
+      throw RequestTimeout('Request Timed Out');
     } catch (e) {
+      print("API Error: ${e.toString()}");
       print("232 ${e.toString()}");
     }
-
     return responseJson;
   }
 
