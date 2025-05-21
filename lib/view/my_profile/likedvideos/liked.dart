@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import 'dart:convert';
 import 'package:video_player/video_player.dart';
@@ -26,10 +27,8 @@ class _VideoListScreenState extends State<VideoListScreen> {
     var headers = {'Authorization': 'Bearer $authToken'};
     print(authToken);
 
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/saved/action'));
+    var request =
+        http.Request('GET', Uri.parse('${AppUrl.baseUrl}/api/v1/saved/action'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

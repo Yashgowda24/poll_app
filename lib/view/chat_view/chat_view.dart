@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -41,8 +42,8 @@ class _ChatViewState extends State<ChatView> {
 
   Future<void> performSearch(String query) async {
     var token = await userPreference.getAuthToken();
-    var apiUrl =
-        'http://pollchat.myappsdevelopment.co.in/api/v1/search/user/$query';
+    var apiUrl = 'https://poll-chat.onrender.com/api/v1/search/user/$query';
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/search/user/$query';
     final headers = {
       'Authorization': 'Bearer $token',
     };
@@ -70,9 +71,9 @@ class _ChatViewState extends State<ChatView> {
     String? authToken = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $authToken'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/closefriend/list'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/closefriend/list'));
+    // 'https://poll-chat.onrender.com/api/v1/friend/closefriend/list'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/closefriend/list'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -95,8 +96,11 @@ class _ChatViewState extends State<ChatView> {
   Future<void> fetchData() async {
     try {
       String? authToken = await userPreference.getAuthToken();
-      var url =
-          Uri.parse('http://pollchat.myappsdevelopment.co.in/api/v1/user/');
+      var url = Uri.parse(
+        '${AppUrl.baseUrl}/api/v1/user/',
+        // 'https://poll-chat.onrender.com/api/v1/user/',
+        // 'http://pollchat.myappsdevelopment.co.in/api/v1/user/',
+      );
       var headers = {'Authorization': 'Bearer $authToken'};
       var response = await http.get(url, headers: headers);
 
@@ -116,8 +120,9 @@ class _ChatViewState extends State<ChatView> {
   Future<void> _fetchFriendRequests() async {
     var token = await userPreference.getAuthToken();
     var response = await http.get(
-      Uri.parse(
-          'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/friend/friendList/'),
+      // 'https://poll-chat.onrender.com/api/v1/friend/friendList/'),
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -125,7 +130,13 @@ class _ChatViewState extends State<ChatView> {
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
+      print('*****');
+      print('json data is:');
+      print(jsonData);
+      print('*******');
       var filterList = jsonData['filterList'] as List<dynamic>;
+
+      // var filterList = jsonData['list'] as List<dynamic>;
 
       setState(() {
         _friendRequests = filterList;
@@ -140,9 +151,11 @@ class _ChatViewState extends State<ChatView> {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
+      'GET',
+      Uri.parse('${AppUrl.baseUrl}/api/v1/friend/remove/$id'),
+    );
+    // 'https://poll-chat.onrender.com/api/v1/friend/remove/$id'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
@@ -159,9 +172,13 @@ class _ChatViewState extends State<ChatView> {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'http://pollchat.myappsdevelopment.co.in/api/v1/notification/mute'));
+      'GET',
+      Uri.parse(
+        '${AppUrl.baseUrl}/api/v1/notification/mute',
+      ),
+    );
+    // 'https://poll-chat.onrender.com/api/v1/notification/mute'));
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/notification/mute'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 

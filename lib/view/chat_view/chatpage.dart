@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/utils/utils.dart';
@@ -99,8 +100,9 @@ class _ChatPageState extends State<ChatPage> {
       'Content-Type': 'application/json'
     };
     var id = user != null ? user['_id'] : src['_id'];
-    var url = Uri.parse(
-        'http://pollchat.myappsdevelopment.co.in/api/v1/chat/create/');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/chat/create/');
+    // 'https://poll-chat.onrender.com/api/v1/chat/create/');
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/chat/create/');
     var body = json.encode({"friendId": id});
 
     try {
@@ -412,8 +414,9 @@ class _ChatPageState extends State<ChatPage> {
 
     try {
       http.Response response = await http.get(
-        Uri.parse(
-            'http://pollchat.myappsdevelopment.co.in/api/v1/message/get/$chatId'),
+        Uri.parse('${AppUrl.baseUrl}/api/v1/message/get/$chatId'),
+        // 'https://poll-chat.onrender.com/api/v1/message/get/$chatId'),
+        // 'http://pollchat.myappsdevelopment.co.in/api/v1/message/get/$chatId'),
         headers: headers,
       );
 
@@ -493,8 +496,9 @@ class _ChatPageState extends State<ChatPage> {
 
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse(
-          'http://pollchat.myappsdevelopment.co.in/api/v1/message/create'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/message/create'),
+      // 'https://poll-chat.onrender.com/api/v1/message/create'),
+      // 'http://pollchat.myappsdevelopment.co.in/api/v1/message/create'),
     );
 
     request.headers.addAll(headers);
@@ -932,8 +936,9 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _launchUrl() async {
-    const url =
-        'https://pollchat.videocall.myappsdevelopment.co.in/c016c724-54c7-4560-b455-8875e148b7a5';
+    const url = '${AppUrl.baseUrl}/c016c724-54c7-4560-b455-8875e148b7a5';
+    // 'https://poll-chat.onrender.com/c016c724-54c7-4560-b455-8875e148b7a5';
+    // 'https://pollchat.videocall.myappsdevelopment.co.in/c016c724-54c7-4560-b455-8875e148b7a5';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -942,8 +947,9 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _handleAudioCall() async {
-    const url =
-        'https://pollchat.videocall.myappsdevelopment.co.in/c016c724-54c7-4560-b455-8875e148b7a5';
+    const url = '${AppUrl.baseUrl}/c016c724-54c7-4560-b455-8875e148b7a5';
+    // 'https://poll-chat.onrender.com/c016c724-54c7-4560-b455-8875e148b7a5';
+    // 'https://pollchat.videocall.myappsdevelopment.co.in/c016c724-54c7-4560-b455-8875e148b7a5';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:poll_chat/data/app_exception.dart';
 import 'package:poll_chat/data/repository/profile_repository.dart';
 import 'package:poll_chat/models/user_model/user_model.dart';
-import 'package:poll_chat/res/routes/routes_name.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/utils/utils.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import 'dart:io';
@@ -79,9 +77,7 @@ class EditProfileViewModel extends GetxController {
       'Authorization': 'Bearer ${await userPreference.getAuthToken()}'
     };
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/user/switch/business'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/user/switch/business'));
 
     request.headers.addAll(headers);
 
@@ -108,9 +104,7 @@ class EditProfileViewModel extends GetxController {
       'Authorization': 'Bearer ${await userPreference.getAuthToken()}'
     };
     var request = http.MultipartRequest(
-        'PUT',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/user/editProfilePhoto/'));
+        'PUT', Uri.parse('${AppUrl.baseUrl}/api/v1/user/editProfilePhoto/'));
 
     if (imagePath.isNotEmpty) {
       request.files

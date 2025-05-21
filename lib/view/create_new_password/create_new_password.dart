@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:http/http.dart' as http;
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -32,7 +33,8 @@ class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/user/reset-password'));
+          '${AppUrl.baseUrl}/api/v1/user/reset-password'));
+            // 'https://pollchat.myappsdevelopment.co.in/api/v1/user/reset-password'));
 
     request.body = json.encode({
       'phone': number,

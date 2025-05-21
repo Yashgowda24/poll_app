@@ -295,9 +295,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexagon/hexagon.dart';
-import 'package:poll_chat/components/octagon_shape.dart';
-import 'package:poll_chat/res/assets/icon_assets.dart';
-import 'package:poll_chat/res/assets/image_assets.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/view/home/components/top_list/selfstatus.dart';
@@ -416,7 +414,8 @@ class _TopListState extends State<TopList> {
       String? authToken = await userPreference.getAuthToken();
       String? userid = await userPreference.getUserID();
       var headers = {'Authorization': 'Bearer $authToken'};
-      var url = 'https://poll-chat.onrender.com/api/v1/moment/$userid';
+      var url = '${AppUrl.baseUrl}/api/v1/moment/$userid';
+      // 'https://poll-chat.onrender.com/api/v1/moment/$userid';
       // 'https://pollchat.myappsdevelopment.co.in/api/v1/moment/$userid';
       var response = await http.get(Uri.parse(url), headers: headers);
 
@@ -471,7 +470,7 @@ class _TopListState extends State<TopList> {
 
     try {
       var response = await http.get(
-        Uri.parse('https://poll-chat.onrender.com/api/v1/moment/friends'),
+        Uri.parse('${AppUrl.baseUrl}/api/v1/moment/friends'),
         // 'https://pollchat.myappsdevelopment.co.in/api/v1/moment/friends'),
         headers: headers,
       );

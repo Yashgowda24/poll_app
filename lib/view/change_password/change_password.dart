@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 
@@ -36,7 +37,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
       var response = await http.put(
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/user/changePassword/'),
+          '${AppUrl.baseUrl}/api/v1/user/changePassword/'),
+            // 'https://pollchat.myappsdevelopment.co.in/api/v1/user/changePassword/'),
         headers: headers,
         body: json.encode({
           "oldPassword": _currentPasswordController.text,

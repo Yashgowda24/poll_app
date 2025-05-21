@@ -1,22 +1,11 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poll_chat/components/ButtonWithIcon.dart';
 import 'package:poll_chat/models/poll_model/poll_model.dart';
-import 'package:poll_chat/res/assets/icon_assets.dart';
-import 'package:poll_chat/res/colors/app_color.dart';
-import 'package:poll_chat/res/routes/routes_name.dart';
-import 'package:poll_chat/simmer/simmerlist.dart';
 import 'package:poll_chat/simmer/simmerpollcard.dart';
-import 'package:poll_chat/view/home/components/message_chip.dart';
 import 'package:poll_chat/view/home/components/poll_card/poll_card.dart';
-import 'package:poll_chat/view/my_profile/savepolls/poll.dart';
 import 'package:poll_chat/view_models/controller/home_model.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
 
 class PollSaveCard extends StatefulWidget {
   const PollSaveCard({super.key});

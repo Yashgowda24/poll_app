@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/view/my_profile/useractions/contentuser.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import 'package:video_player/video_player.dart';
@@ -47,7 +48,7 @@ class _PostsUserByIdState extends State<PostsUserById> {
       var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/action/user/${widget.id}'),
+            '${AppUrl.baseUrl}/api/v1/action/user/${widget.id}'),
       );
       request.headers.addAll(headers);
 

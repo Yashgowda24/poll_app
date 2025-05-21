@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'dart:convert';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
@@ -34,9 +35,8 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
       var token = await userPreference.getAuthToken();
       var headers = {'Authorization': 'Bearer $token'};
       var request = http.Request(
-          'GET',
-          Uri.parse(
-              'https://pollchat.myappsdevelopment.co.in/api/v1/friend/received/'));
+          'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/received/'));
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/received/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
 
@@ -201,9 +201,8 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/confirm/$id'));
+        'POST', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/confirm/$id'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/confirm/$id'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -221,8 +220,8 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
     var token = await userPreference.getAuthToken();
     print('Token: $token'); // Check token
     var headers = {'Authorization': 'Bearer $token'};
-    var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/$id');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/friend/delete/$id');
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/$id');
     var request = http.Request('DELETE', url);
     request.headers.addAll(headers);
 

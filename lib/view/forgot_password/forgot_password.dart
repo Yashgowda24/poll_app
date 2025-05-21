@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:http/http.dart' as http;
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -21,8 +22,8 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   var phone;
   Future<void> forgotPassword() async {
     var headers = {'Content-Type': 'application/json'};
-    var url =
-        'https://pollchat.myappsdevelopment.co.in/api/v1/user/forgot-password';
+    var url = '${AppUrl.baseUrl}/api/v1/user/forgot-password';
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/user/forgot-password';
 
     var body = json.encode({'phone': phone});
 

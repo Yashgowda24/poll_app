@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'dart:convert';
 import 'package:poll_chat/res/colors/app_color.dart';
-import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 
 class AccountsView extends StatefulWidget {
@@ -29,8 +29,11 @@ class _AccountsViewState extends State<AccountsView> {
         isLoading = true;
       });
       String? authToken = await userPreference.getAuthToken();
-      var url =
-          Uri.parse('http://pollchat.myappsdevelopment.co.in/api/v1/user/');
+      var url = Uri.parse(
+        '${AppUrl.baseUrl}/api/v1/user/',
+        // 'https://poll-chat.onrender.com/api/v1/user/',
+        // 'http://pollchat.myappsdevelopment.co.in/api/v1/user/',
+      );
       var headers = {'Authorization': 'Bearer $authToken'};
       var response = await http.get(url, headers: headers);
 
@@ -59,8 +62,9 @@ class _AccountsViewState extends State<AccountsView> {
   Future<void> sendFriendRequest(String id) async {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
-    var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/friend/add/$id');
+    // 'https://poll-chat.onrender.com/api/v1/friend/add/$id');
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id');
     try {
       var response = await http.post(url, headers: headers);
       if (response.statusCode == 200) {
@@ -83,8 +87,6 @@ class _AccountsViewState extends State<AccountsView> {
     }
   }
 
-  
-  
   @override
   Widget build(BuildContext context) {
     return Column(

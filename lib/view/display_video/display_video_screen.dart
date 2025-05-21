@@ -3,14 +3,10 @@ import 'package:get/get.dart';
 
 import '../../view_models/controller/video_controller_view_model.dart';
 
-
-
-
 class DisplayVideo_Screen extends StatelessWidget {
   DisplayVideo_Screen({Key? key}) : super(key: key);
 
   final VideoController videoController = Get.put(VideoController());
-
 
   /*Future<void> share(String vidId) async {
     await FlutterShare.share(
@@ -20,12 +16,8 @@ class DisplayVideo_Screen extends StatelessWidget {
     videoController.shareVideo(vidId);
   }*/
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       body: Obx(() {
         return PageView.builder(
@@ -35,7 +27,7 @@ class DisplayVideo_Screen extends StatelessWidget {
             itemBuilder: (context, index) {
               final data = videoController.videoList[index];
               return InkWell(
-                onDoubleTap: (){
+                onDoubleTap: () {
                   //ideoController.likedVideo(data.id);
                 },
                 child: Stack(
@@ -69,22 +61,22 @@ class DisplayVideo_Screen extends StatelessWidget {
                       child: Container(
                         height: MediaQuery.of(context).size.height - 400,
                         margin: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height / 3, right: 10),
+                            top: MediaQuery.of(context).size.height / 3,
+                            right: 10),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-
                             InkWell(
-                              onTap: (){
-                                //Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(uid: data.uid,)));
-                              },
-                              child: Text("Hello")/*ProfileButton(
+                                onTap: () {
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(uid: data.uid,)));
+                                },
+                                child: Text(
+                                    "Hello") /*ProfileButton(
                                 profilePhotoUrl: data.profilePic,
                               ),*/
-                            ),
-
+                                ),
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 //videoController.likedVideo(data.id);
                               },
                               child: Column(
@@ -92,18 +84,18 @@ class DisplayVideo_Screen extends StatelessWidget {
                                   Icon(
                                     Icons.favorite,
                                     size: 45,
-                                    color: Colors.white ,
+                                    color: Colors.white,
                                   ),
                                   Text(
                                     data.likes.length.toString(),
-                                    style:
-                                    TextStyle(fontSize: 15, color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
                                   )
                                 ],
                               ),
                             ),
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 //share(data.id);
                               },
                               child: Column(
@@ -115,14 +107,14 @@ class DisplayVideo_Screen extends StatelessWidget {
                                   ),
                                   Text(
                                     data.shareCount.toString(),
-                                    style:
-                                    TextStyle(fontSize: 15, color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
                                   )
                                 ],
                               ),
                             ),
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 //Navigator.push(context, MaterialPageRoute(builder: (context)=>CommentScreen(id : data.id)));
                               },
                               child: Column(
@@ -134,17 +126,17 @@ class DisplayVideo_Screen extends StatelessWidget {
                                   ),
                                   Text(
                                     data.commentsCount.toString(),
-                                    style:
-                                    TextStyle(fontSize: 15, color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   Column(
                                     children: [
                                       //AlbumRotator(profilePicUrl: data.profilePic)
-
                                     ],
                                   ),
-
                                 ],
                               ),
                             )
@@ -156,8 +148,7 @@ class DisplayVideo_Screen extends StatelessWidget {
                 ),
               );
             });
-      }
-      ),
+      }),
     );
   }
 }

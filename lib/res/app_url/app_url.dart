@@ -1,7 +1,8 @@
 class AppUrl {
   // Development
   // static const String baseUrl = "https://pollchat.myappsdevelopment.co.in";
-  static const String baseUrl = "https://poll-chat.onrender.com";
+  // static const String baseUrl = "https://poll-chat.onrender.com";
+  static const String baseUrl = "https://pollchat-backend-cpanel-code.onrender.com";
   // Production
   static const String baseUrl2 = "http://103.211.202.117:8080";
   static const String loginUrl = "$baseUrl/api/v1/user/login";

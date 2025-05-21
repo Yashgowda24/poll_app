@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -58,7 +59,8 @@ class _FindViewState extends State<FindView>
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var url = Uri.parse(
-      'https://poll-chat.onrender.com/api/v1/friend/add/$id',
+      '${AppUrl.baseUrl}/api/v1/friend/add/$id',
+      // 'https://poll-chat.onrender.com/api/v1/friend/add/$id',
     );
     // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id',);
     try {
@@ -84,7 +86,8 @@ class _FindViewState extends State<FindView>
 
   Future<void> performSearch(String query) async {
     var token = await userPreference.getAuthToken();
-    final apiUrl = 'https://poll-chat.onrender.com/api/v1/search/user/$query';
+    final apiUrl = '${AppUrl.baseUrl}/api/v1/search/user/$query';
+    // 'https://poll-chat.onrender.com/api/v1/search/user/$query';
     // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/user/$query';
     final headers = {
       'Authorization': 'Bearer $token',
@@ -112,7 +115,8 @@ class _FindViewState extends State<FindView>
   Future<void> performPollSearch(String query) async {
     log("performPollSearch API call");
     var token = await userPreference.getAuthToken();
-    final apiUrl = 'https://poll-chat.onrender.com/api/v1/search/poll/$query';
+    final apiUrl = '${AppUrl.baseUrl}/api/v1/search/poll/$query';
+    // 'https://poll-chat.onrender.com/api/v1/search/poll/$query';
     // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/poll/$query';
     // 'https://pollchat.myappsdevelopment.co.in/api/v1/search/poll/question/$query';
     final headers = {

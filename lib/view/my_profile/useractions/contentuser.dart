@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
@@ -49,9 +50,7 @@ class _ContentUserScreenState extends State<ContentUserScreen> {
     };
 
     var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/likeDislike/$id'));
+        'POST', Uri.parse('${AppUrl.baseUrl}/api/v1/likeDislike/$id'));
     request.body = json.encode({"likeDislike": value});
     request.headers.addAll(headers);
 

@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/view/action_view/components/reels/content.dart';
 import 'package:poll_chat/view_models/controller/music_view_model.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
@@ -51,7 +52,11 @@ class _PostsState extends State<Posts> {
       });
       var request = http.Request(
         'GET',
-        Uri.parse('https://pollchat.myappsdevelopment.co.in/api/v1/action/all'),
+        Uri.parse(
+          '${AppUrl.baseUrl}/api/v1/action/all'
+          // 'https://poll-chat.onrender.com/api/v1/action/all',
+          // 'https://pollchat.myappsdevelopment.co.in/api/v1/action/all',
+        ),
       );
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();

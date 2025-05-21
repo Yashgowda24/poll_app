@@ -191,6 +191,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart'; // Import this to use SystemNavigator
+import 'package:poll_chat/res/app_url/app_url.dart';
 
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -331,7 +332,8 @@ class _LoginViewState extends State<LoginView> {
                         child: TextButton(
                           onPressed: () {
                             appController
-                                .open("https://pollchat.co/terms-of-use/");
+                                .open("${AppUrl.baseUrl}/terms-of-use/");
+                            // "https://pollchat.co/terms-of-use/");
                           },
                           style: TextButton.styleFrom(
                               foregroundColor: AppColor.purpleColor,

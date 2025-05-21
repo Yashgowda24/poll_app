@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
@@ -38,7 +39,9 @@ class _GroupfriendScreenState extends State<GroupfriendScreen> {
     var token = await userPreference.getAuthToken();
     var response = await http.get(
       Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/',
+        '${AppUrl.baseUrl}/api/v1/friend/friendList/',
+        // 'https://poll-chat.onrender.com/api/v1/friend/friendList/',
+        // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/',
       ),
       headers: {
         'Authorization': 'Bearer $token',
@@ -117,8 +120,9 @@ class _GroupfriendScreenState extends State<GroupfriendScreen> {
 
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse(
-          'http://pollchat.myappsdevelopment.co.in/api/v1/message/create'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/message/create'),
+      // 'https://poll-chat.onrender.com/api/v1/message/create'),
+      // 'http://pollchat.myappsdevelopment.co.in/api/v1/message/create'),
     );
 
     request.headers.addAll(headers);

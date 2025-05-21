@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import '../../data/repository/profile_repository.dart';
@@ -205,9 +206,8 @@ class PollModel extends GetxController {
   hidePoll(String pollId, String token) async {
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'PUT',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/poll/hide/$pollId'));
+        'PUT', Uri.parse('${AppUrl.baseUrl}/api/v1/poll/hide/$pollId'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/hide/$pollId'));
     request.headers.addAll(headers);
     try {
       http.StreamedResponse response = await request.send();
@@ -226,10 +226,9 @@ class PollModel extends GetxController {
   void deletePoll(String pollId, var token) async {
     log("message ====>deletePoll API Call");
     var headers = {'Authorization': 'Bearer $token'};
-    var request = http.Request(
-        'DELETE',
-        Uri.parse(
-            'http://pollchat.myappsdevelopment.co.in/api/v1/poll/deletepoll/$pollId'));
+    var request = http.Request('DELETE',
+        Uri.parse('${AppUrl.baseUrl}/api/v1/poll/deletepoll/$pollId'));
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/poll/deletepoll/$pollId'));
     request.headers.addAll(headers);
     try {
       http.StreamedResponse response = await request.send();
@@ -259,7 +258,8 @@ class PollModel extends GetxController {
     }
 
     final headers = {'Authorization': 'Bearer $token'};
-    final url = 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId';
+    final url = '${AppUrl.baseUrl}/api/v1/poll/$pollId';
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId';
 
     try {
       final response = await http.get(Uri.parse(url), headers: headers);

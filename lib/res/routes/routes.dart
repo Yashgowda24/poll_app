@@ -16,7 +16,6 @@ import 'package:poll_chat/view/chat_view/newfriends.dart';
 import 'package:poll_chat/view/congratulations/congratulations.dart';
 import 'package:poll_chat/view/create_new_password/create_new_password.dart';
 import 'package:poll_chat/view/create_poll/create_poll.dart';
-import 'package:poll_chat/view/create_poll/customcemra.dart';
 import 'package:poll_chat/view/dashboard/dashboard.dart';
 import 'package:poll_chat/view/edit_caption/edit_caption.dart';
 import 'package:poll_chat/view/edit_profile/edit_profile.dart';

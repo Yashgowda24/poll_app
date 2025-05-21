@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
@@ -34,9 +35,8 @@ class _SendRequestScreenState extends State<SendRequestScreen> {
       var token = await userPreference.getAuthToken();
       var headers = {'Authorization': 'Bearer $token'};
       var request = http.Request(
-          'GET',
-          Uri.parse(
-              'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
+          'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/sent/'));
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
 

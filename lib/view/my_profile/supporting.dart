@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 
@@ -29,9 +30,7 @@ class _SupportingScreenState extends State<SupportingScreen> {
 
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'http://pollchat.myappsdevelopment.co.in/api/v1/support/supporting'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/support/supporting'));
 
     request.headers.addAll(headers);
 

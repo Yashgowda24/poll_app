@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
 import 'package:poll_chat/utils/utils.dart';
@@ -35,8 +36,7 @@ class _PollChatNotificationsView extends State<PollChatNotificationsView> {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
 
-    var uri = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/notification/fetch');
+    var uri = Uri.parse('${AppUrl.baseUrl}/api/v1/notification/fetch');
     var response = await http.get(uri, headers: headers);
 
     if (response.statusCode == 200) {
@@ -71,8 +71,7 @@ class _PollChatNotificationsView extends State<PollChatNotificationsView> {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
 
-    var uri = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/notification/delete/');
+    var uri = Uri.parse('${AppUrl.baseUrl}/api/v1/notification/delete/');
 
     HttpClientRequest request = await HttpClient().deleteUrl(uri);
     headers.forEach((header, value) {
@@ -130,10 +129,9 @@ class _PollChatNotificationsView extends State<PollChatNotificationsView> {
             ),
             isLoading
                 ? const Expanded(
-                    child: ShimmerListView(
-                        itemCount: 10), 
+                    child: ShimmerListView(itemCount: 10),
                   )
-                : notifications.isEmpty 
+                : notifications.isEmpty
                     ? const Center(
                         child: Text('No notifications available'),
                       )

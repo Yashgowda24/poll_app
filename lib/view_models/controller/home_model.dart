@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:poll_chat/models/user_model/user_model.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 import '../../data/repository/profile_repository.dart';
 import '../../utils/utils.dart';
@@ -36,10 +37,10 @@ class HomeViewModelController extends GetxController {
       'Authorization': 'Bearer $authToken',
     };
     loading.value = true;
-    final response =
-        await http.get(Uri.parse("https://poll-chat.onrender.com$pollId"),
-            // "https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId"),
-            headers: headers);
+    final response = await http.get(Uri.parse('${AppUrl.baseUrl}/$pollId'),
+        // "https://poll-chat.onrender.com$pollId"),
+        // "https://pollchat.myappsdevelopment.co.in/api/v1/poll/$pollId"),
+        headers: headers);
     if (response.statusCode == 200) {
       singlePollCard.clear();
       final jsonData = jsonDecode(response.body);
@@ -59,10 +60,8 @@ class HomeViewModelController extends GetxController {
     log("message ====> pinPoll API Call");
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'PUT',
-        Uri.parse(
-          "https://poll-chat.onrender.com/api/v1/poll/pin/$pollId"));
-            // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/$pollId'));
+        'PUT', Uri.parse("${AppUrl.baseUrl}/api/v1/poll/pin/$pollId"));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/poll/pin/$pollId'));
     request.headers.addAll(headers);
     try {
       http.StreamedResponse response = await request.send();
@@ -88,10 +87,8 @@ class HomeViewModelController extends GetxController {
       var token = await userPreference.getAuthToken();
       var headers = {'Authorization': 'Bearer $token'};
       var request = http.Request(
-          'GET',
-          Uri.parse(
-          'https://poll-chat.onrender.com/api/v1/friend/sent/'));
-              // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
+          'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/sent/'));
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/sent/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
 
@@ -127,10 +124,8 @@ class HomeViewModelController extends GetxController {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-          'https://poll-chat.onrender.com/api/v1/friend/remove/$id'));
-            // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/remove/$id'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/remove/$id'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 

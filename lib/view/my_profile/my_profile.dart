@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -60,9 +61,8 @@ class _MyProfileState extends State<MyProfileView>
     var headers = {'Authorization': 'Bearer $token'};
 
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/suggestion'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/suggestion'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/suggestion'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -156,8 +156,8 @@ class _MyProfileState extends State<MyProfileView>
   Future<void> sendFriendRequest(String id) async {
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
-    var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/friend/add/$id');
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/add/$id');
     try {
       var response = await http.post(url, headers: headers);
       if (response.statusCode == 200) {
@@ -185,9 +185,8 @@ class _MyProfileState extends State<MyProfileView>
     var token = await userPreference.getAuthToken();
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/$id'));
+        'GET', Uri.parse('${AppUrl.baseUrl}/api/v1/friend/delete/$id'));
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/$id'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 

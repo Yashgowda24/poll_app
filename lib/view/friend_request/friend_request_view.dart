@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/view/friend_request/components/friendslist.dart';
 import 'package:poll_chat/view/friend_request/components/sendrequest.dart';
@@ -36,8 +37,8 @@ class _FriendRequestViewState extends State<FriendRequestView>
     var userid = await userPreference.getUserID();
     print('Token: $token'); // Check token
     var headers = {'Authorization': 'Bearer $token'};
-    var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/friend/delete/');
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/delete/');
     var request = http.Request('DELETE', url);
     request.headers.addAll(headers);
 
@@ -63,8 +64,8 @@ class _FriendRequestViewState extends State<FriendRequestView>
     //var userid = await userPreference.getUserID();
     print('Token: $token'); // Check token
     var headers = {'Authorization': 'Bearer $token'};
-    var url = Uri.parse(
-        'https://pollchat.myappsdevelopment.co.in/api/v1/friend/received/delete');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/friend/received/delete');
+    // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/received/delete');
     var request = http.Request('DELETE', url);
     request.headers.addAll(headers);
 

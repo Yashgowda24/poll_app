@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/utils/utils.dart';
 import 'package:poll_chat/view_models/controller/signup_view_model.dart';
@@ -208,8 +209,7 @@ class _SignupViewState extends State<SignupView> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 0, horizontal: 2)),
                     onPressed: () {
-                      appController.open(
-                          "https://pollchat.co/terms-of-use/");
+                      appController.open("${AppUrl.baseUrl}/terms-of-use/");
                     },
                     child: const Text(
                       "Terms & Conditions",
@@ -220,11 +220,10 @@ class _SignupViewState extends State<SignupView> {
                     style: TextButton.styleFrom(
                         minimumSize: Size.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 0, horizontal: 2)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 2)),
                     onPressed: () {
-                      appController.open(
-                          "https://pollchat.co/privacy-policy/");
+                      appController.open("${AppUrl.baseUrl}/privacy-policy/");
                     },
                     child: const Text("Privacy Policy",
                         style: TextStyle(color: AppColor.purpleColor)))

@@ -3,10 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/simmer/simmerlist.dart';
-import 'package:poll_chat/simmer/simmerpollcard.dart';
-import 'package:poll_chat/utils/utils.dart';
 import 'package:poll_chat/view/privacy_setting/privacy_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -41,8 +40,8 @@ class _PrivacySettingView extends State<PrivacySettingView> {
     SharedPreferences sp = await SharedPreferences.getInstance();
     final authToken = sp.getString('authToken');
     var headers = {'Authorization': 'Bearer $authToken'};
-    var request = http.Request('GET',
-        Uri.parse('http://pollchat.myappsdevelopment.co.in/api/v1/block/'));
+    var request =
+        http.Request('GET', Uri.parse('${AppUrl.baseUrl}/api/v1/block/'));
     request.headers.addAll(headers);
 
     try {
@@ -72,7 +71,7 @@ class _PrivacySettingView extends State<PrivacySettingView> {
     final authToken = sp.getString('authToken');
     var headers = {'Authorization': 'Bearer $authToken'};
     final response = await http.get(
-      Uri.parse('https://pollchat.myappsdevelopment.co.in/api/v1/user/privacy'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/user/privacy'),
       headers: headers,
     );
     if (response.statusCode == 200) {
@@ -108,7 +107,7 @@ class _PrivacySettingView extends State<PrivacySettingView> {
     };
 
     var response = await http.put(
-      Uri.parse('https://pollchat.myappsdevelopment.co.in/api/v1/user/privacy'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/user/privacy'),
       headers: headers,
       body: json.encode({
         "profileType":

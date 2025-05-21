@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:poll_chat/models/poll_model/poll_model.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
-import 'package:poll_chat/view_models/controller/home_model.dart';
-import 'package:poll_chat/view_models/controller/user_preference_view_model.dart';
 
 showHomeModal() {
   return Get.bottomSheet(

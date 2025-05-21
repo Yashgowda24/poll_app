@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
 import 'package:poll_chat/models/poll_model/poll_model.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -215,7 +216,8 @@ class _ContentScreenState extends State<ContentScreen> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pollchat.myappsdevelopment.co.in/api/v1/likeDislike/$id'));
+          '${AppUrl.baseUrl}/api/v1/likeDislike/$id'));
+            // 'https://pollchat.myappsdevelopment.co.in/api/v1/likeDislike/$id'));
     request.body = json.encode({"likeDislike": value});
     request.headers.addAll(headers);
     try {
@@ -251,7 +253,8 @@ class _ContentScreenState extends State<ContentScreen> {
     var token = await userPreference.getAuthToken();
     var response = await http.get(
       Uri.parse(
-          'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
+        '${AppUrl.baseUrl}/api/v1/friend/friendList/'),
+          // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -273,7 +276,8 @@ class _ContentScreenState extends State<ContentScreen> {
   void supportApi() async {
     var userid = await userPreference.getUserID();
     var token = await userPreference.getAuthToken();
-    var url = 'http://pollchat.myappsdevelopment.co.in/api/v1/support/$userid';
+    var url = '${AppUrl.baseUrl}/api/v1/support/$userid';
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/support/$userid';
     var headers = {
       'Authorization': 'Bearer $token',
     };
@@ -316,8 +320,8 @@ class _ContentScreenState extends State<ContentScreen> {
   Future<void> saveaction(String? id) async {
     var token = await userPreference.getAuthToken();
     // Fixed URL and headers
-    var url =
-        'https://pollchat.myappsdevelopment.co.in/api/v1/saved/action/$id';
+    var url = '${AppUrl.baseUrl}/api/v1/saved/action/$id';
+        // 'https://pollchat.myappsdevelopment.co.in/api/v1/saved/action/$id';
     var headers = {
       'Authorization': 'Bearer $token',
     };

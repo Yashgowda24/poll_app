@@ -3,9 +3,7 @@ import 'dart:io';
 
 import '../../models/video/video.dart';
 
-
-
-class VideoUploadController extends GetxController{
+class VideoUploadController extends GetxController {
   static VideoUploadController instance = Get.find();
   // var uuid = Uuid();
 
@@ -64,8 +62,7 @@ class VideoUploadController extends GetxController{
     }
   }*/
 
-
- /* Future<String> _uploadVideoToStorage(String videoID , String videoPath) async{
+  /* Future<String> _uploadVideoToStorage(String videoID , String videoPath) async{
     Reference reference = FirebaseStorage.instance.ref().child("videos").child(videoID);
     UploadTask uploadTask = reference.putFile(await _compressVideo(videoPath));
     TaskSnapshot snapshot = await uploadTask;

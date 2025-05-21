@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:poll_chat/components/octagon_shape.dart';
 import 'package:poll_chat/models/poll_model/poll_model.dart';
+import 'package:poll_chat/res/app_url/app_url.dart';
 import 'package:poll_chat/res/assets/icon_assets.dart';
 import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/res/routes/routes_name.dart';
@@ -215,8 +216,8 @@ class _PollCardState extends State<PollCard> {
   Future<void> _fetchFriendRequests() async {
     var token = await userPreference.getAuthToken();
     var response = await http.get(
-      Uri.parse(
-          'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
+      Uri.parse('${AppUrl.baseUrl}/api/v1/friend/friendList/'),
+      // 'https://pollchat.myappsdevelopment.co.in/api/v1/friend/friendList/'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -459,8 +460,8 @@ class _PollCardState extends State<PollCard> {
       'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json'
     };
-    var url = Uri.parse(
-        'http://pollchat.myappsdevelopment.co.in/api/v1/chat/create/');
+    var url = Uri.parse('${AppUrl.baseUrl}/api/v1/chat/create/');
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/chat/create/');
     var body = json.encode({"friendId": '${widget.pollModel['_id']}'});
 
     try {
@@ -504,8 +505,8 @@ class _PollCardState extends State<PollCard> {
   Future<void> fetchData() async {
     try {
       String? authToken = await userPreference.getAuthToken();
-      var url =
-          Uri.parse('http://pollchat.myappsdevelopment.co.in/api/v1/user/');
+      var url = Uri.parse('${AppUrl.baseUrl}/api/v1/user/');
+      // 'http://pollchat.myappsdevelopment.co.in/api/v1/user/');
       var headers = {'Authorization': 'Bearer $authToken'};
       var response = await http.get(url, headers: headers);
       if (response.statusCode == 200) {
@@ -646,8 +647,10 @@ class _PollCardState extends State<PollCard> {
     String? token = await userPreference.getAuthToken();
     var headers = {'Authorization': '$token'};
 
-    var url =
-        Uri.parse('http://pollchat.myappsdevelopment.co.in/api/v1/support/$id');
+    var url = Uri.parse(
+      '${AppUrl.baseUrl}/api/v1/support/$id',
+    );
+    // 'http://pollchat.myappsdevelopment.co.in/api/v1/support/$id');
 
     try {
       var request = http.Request('POST', url);
@@ -1362,18 +1365,18 @@ class _PollCardState extends State<PollCard> {
                                               child: InkWell(
                                                 onTap: () {
                                                   print(
-                                                      "https://pollchat.myappsdevelopment.co.in/api/v1/poll/ + ${pollModel['_id']}");
+                                                      "${AppUrl.baseUrl}/api/v1/poll/ + ${pollModel['_id']}");
                                                   if (!widget.isProfile!) {
                                                     // shareContent();
                                                     showShareScreen(context,
-                                                        "https://pollchat.myappsdevelopment.co.in/api/v1/poll/ + ${pollModel['_id']}");
+                                                        "${AppUrl.baseUrl}/api/v1/poll/ + ${pollModel['_id']}");
                                                     //  showShareContentModal();
                                                   } else {
                                                     // shareContent();
                                                     // showProfileModal(
                                                     //     widget.pollModel['_id']);
                                                     showShareScreen(context,
-                                                        "https://pollchat.myappsdevelopment.co.in/api/v1/poll/ + ${pollModel['_id']}");
+                                                        "${AppUrl.baseUrl}/api/v1/poll/ + ${pollModel['_id']}");
                                                   }
                                                 },
                                                 child: SvgPicture.asset(

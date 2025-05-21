@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poll_chat/res/colors/app_color.dart';
 import 'package:poll_chat/view/action_view/components/stickerstype.dart';
 
 class DraggableSticker extends StatefulWidget {
